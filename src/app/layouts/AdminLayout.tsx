@@ -1,31 +1,30 @@
 import { ReactNode, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/store/authStore";
-import { PermissionGuard } from "../guards/PermissionGuard";
 import { cn } from "@/utils/cn";
 import brandLogo from "@/assets/brand-logo.jpeg";
 import {
-  HiHome,
-  HiUsers,
-  HiShieldCheck,
-  HiDocumentCheck,
-  HiLockClosed,
-  HiBuildingOffice,
-  HiMapPin,
-  HiCog6Tooth,
-  HiBars3,
-  HiMoon,
-  HiSun,
-  HiChevronRight,
-  HiChevronDown,
-  HiCalendar,
-  HiCreditCard,
-  HiBanknotes,
-  HiChatBubbleLeftRight,
-  HiDocumentText,
-  HiMegaphone,
-  HiNewspaper,
-} from "react-icons/hi2";
+  HiOutlineHome,
+  HiOutlineUsers,
+  HiOutlineShieldCheck,
+  HiOutlineClipboardCheck,
+  HiOutlineLockClosed,
+  HiOutlineOfficeBuilding,
+  HiOutlineLocationMarker,
+  HiOutlineCog,
+  HiOutlineMenu,
+  HiOutlineMoon,
+  HiOutlineSun,
+  HiOutlineChevronRight,
+  HiOutlineChevronDown,
+  HiOutlineCalendar,
+  HiOutlineCreditCard,
+  HiOutlineCash,
+  HiOutlineChatAlt2,
+  HiOutlineDocumentText,
+  HiOutlineSpeakerphone,
+  HiOutlineNewspaper,
+} from "react-icons/hi";
 import { useUIStore } from "@/store/uiStore";
 import { Permissions } from "@/types";
 
@@ -53,7 +52,7 @@ const menuSections: MenuSection[] = [
       {
         path: "/admin/dashboard",
         label: "Dashboard",
-        icon: HiHome,
+        icon: HiOutlineHome,
         permission: Permissions.USER_READ,
         title: "DASHBOARD",
         breadcrumb: "Analytics",
@@ -66,7 +65,7 @@ const menuSections: MenuSection[] = [
       {
         path: "/admin/users",
         label: "Users",
-        icon: HiUsers,
+        icon: HiOutlineUsers,
         permission: Permissions.USER_READ,
         title: "USERS",
         breadcrumb: "Users",
@@ -74,7 +73,7 @@ const menuSections: MenuSection[] = [
       {
         path: "/admin/roles",
         label: "Roles & Permissions",
-        icon: HiShieldCheck,
+        icon: HiOutlineShieldCheck,
         permission: Permissions.ROLE_MANAGE,
         title: "ROLES & PERMISSIONS",
         breadcrumb: "Roles & Permissions",
@@ -82,7 +81,7 @@ const menuSections: MenuSection[] = [
       {
         path: "/admin/kyc",
         label: "KYC Review",
-        icon: HiDocumentCheck,
+        icon: HiOutlineClipboardCheck,
         permission: Permissions.KYC_REVIEW,
         title: "KYC REVIEW",
         breadcrumb: "KYC Review",
@@ -95,7 +94,7 @@ const menuSections: MenuSection[] = [
       {
         path: "/admin/tenants",
         label: "Service Providers",
-        icon: HiBuildingOffice,
+        icon: HiOutlineOfficeBuilding,
         permission: Permissions.TENANT_MANAGE,
         title: "SERVICE PROVIDERS",
         breadcrumb: "Service Providers",
@@ -103,7 +102,7 @@ const menuSections: MenuSection[] = [
       {
         path: "/admin/cities",
         label: "Cities",
-        icon: HiMapPin,
+        icon: HiOutlineLocationMarker,
         permission: Permissions.TENANT_MANAGE,
         title: "CITIES",
         breadcrumb: "Cities",
@@ -111,7 +110,7 @@ const menuSections: MenuSection[] = [
       {
         path: "/admin/bookings",
         label: "Bookings",
-        icon: HiCalendar,
+        icon: HiOutlineCalendar,
         permission: Permissions.BOOKING_MANAGE,
         title: "BOOKINGS",
         breadcrumb: "Bookings",
@@ -119,7 +118,7 @@ const menuSections: MenuSection[] = [
       {
         path: "/admin/transactions",
         label: "Transactions",
-        icon: HiCreditCard,
+        icon: HiOutlineCreditCard,
         permission: Permissions.TRANSACTION_READ,
         title: "TRANSACTIONS",
         breadcrumb: "Transactions",
@@ -127,7 +126,7 @@ const menuSections: MenuSection[] = [
       {
         path: "/admin/payments",
         label: "Payments",
-        icon: HiBanknotes,
+        icon: HiOutlineCash,
         permission: Permissions.PAYMENT_READ,
         title: "PAYMENTS",
         breadcrumb: "Payments",
@@ -140,7 +139,7 @@ const menuSections: MenuSection[] = [
       {
         path: "/admin/customer-support",
         label: "Customer Support",
-        icon: HiChatBubbleLeftRight,
+        icon: HiOutlineChatAlt2,
         permission: Permissions.SUPPORT_MANAGE,
         title: "CUSTOMER SUPPORT",
         breadcrumb: "Customer Support",
@@ -148,7 +147,7 @@ const menuSections: MenuSection[] = [
       {
         path: "/admin/announcements",
         label: "Announcements",
-        icon: HiMegaphone,
+        icon: HiOutlineSpeakerphone,
         permission: Permissions.ANNOUNCEMENT_MANAGE,
         title: "ANNOUNCEMENTS",
         breadcrumb: "Announcements",
@@ -161,7 +160,7 @@ const menuSections: MenuSection[] = [
       {
         path: "/admin/cms",
         label: "CMS",
-        icon: HiDocumentText,
+        icon: HiOutlineDocumentText,
         permission: Permissions.CMS_MANAGE,
         title: "CMS",
         breadcrumb: "CMS",
@@ -169,7 +168,7 @@ const menuSections: MenuSection[] = [
       {
         path: "/admin/blogs",
         label: "Blogs",
-        icon: HiNewspaper,
+        icon: HiOutlineNewspaper,
         permission: Permissions.BLOG_MANAGE,
         title: "BLOGS",
         breadcrumb: "Blogs",
@@ -182,7 +181,7 @@ const menuSections: MenuSection[] = [
       {
         path: "/admin/security",
         label: "Security",
-        icon: HiLockClosed,
+        icon: HiOutlineLockClosed,
         permission: Permissions.SYSTEM_SECURITY,
         title: "SECURITY",
         breadcrumb: "Security",
@@ -190,7 +189,7 @@ const menuSections: MenuSection[] = [
       {
         path: "/admin/settings",
         label: "Settings",
-        icon: HiCog6Tooth,
+        icon: HiOutlineCog,
         permission: Permissions.SYSTEM_SECURITY,
         title: "SETTINGS",
         breadcrumb: "Settings",
@@ -248,7 +247,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
     }
   }, [location.pathname]);
 
-  const toggleSection = (index: number) => {
+  const toggleSection = (index: number, e?: React.MouseEvent) => {
     setExpandedSections((prev) => {
       const next = new Set(prev);
       if (next.has(index)) {
@@ -329,10 +328,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
                       >
                         <Icon className="w-5 h-5 flex-shrink-0" />
                         {isSidebarOpen && (
-                          <>
-                            <span className="flex-1">{item.label}</span>
-                            <HiChevronRight className="w-4 h-4 opacity-70" />
-                          </>
+                          <span className="flex-1">{item.label}</span>
                         )}
                       </Link>
                     );
@@ -345,9 +341,14 @@ export function AdminLayout({ children }: AdminLayoutProps) {
               <div key={sectionIndex} className="space-y-1">
                 {isSidebarOpen && (
                   <button
-                    onClick={() => toggleSection(sectionIndex)}
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      toggleSection(sectionIndex, e);
+                    }}
                     className={cn(
-                      "w-full flex items-center justify-between px-3 py-2 rounded-md transition-all duration-200 text-xs font-semibold uppercase tracking-wider",
+                      "w-full flex items-center justify-between px-3 py-2 rounded-md transition-all duration-200 text-xs font-semibold uppercase tracking-wider cursor-pointer",
                       sectionHasActiveItem
                         ? "text-white"
                         : "text-white opacity-70 hover:opacity-100"
@@ -360,61 +361,54 @@ export function AdminLayout({ children }: AdminLayoutProps) {
                   >
                     <span>{section.label}</span>
                     {isExpanded ? (
-                      <HiChevronDown className="w-4 h-4 transition-transform duration-200" />
+                      <HiOutlineChevronDown className="w-4 h-4 transition-transform duration-200" />
                     ) : (
-                      <HiChevronRight className="w-4 h-4 transition-transform duration-200" />
+                      <HiOutlineChevronRight className="w-4 h-4 transition-transform duration-200" />
                     )}
                   </button>
                 )}
-                {(isSidebarOpen ? isExpanded : true) && (
+                {(!isSidebarOpen || isExpanded) && (
                   <div className="space-y-0.5">
                     {section.items.map((item) => {
                       const Icon = item.icon;
                       const isActive = location.pathname === item.path;
                       return (
-                        <PermissionGuard
+                        <Link
                           key={item.path}
-                          permission={item.permission}
+                          to={item.path}
+                          className={cn(
+                            "flex items-center gap-3 px-3 py-2.5 rounded-md transition-all duration-200 text-sm font-medium relative group",
+                            isActive
+                              ? "text-white"
+                              : "text-white hover:text-white"
+                          )}
+                          style={{
+                            backgroundColor: isActive
+                              ? "rgba(255, 255, 255, 0.2)"
+                              : "transparent",
+                            opacity: isActive ? 1 : 0.85,
+                            marginLeft: isSidebarOpen ? "0.5rem" : "0",
+                          }}
+                          onMouseEnter={(e) => {
+                            if (!isActive) {
+                              e.currentTarget.style.backgroundColor =
+                                "rgba(255, 255, 255, 0.1)";
+                              e.currentTarget.style.opacity = "1";
+                            }
+                          }}
+                          onMouseLeave={(e) => {
+                            if (!isActive) {
+                              e.currentTarget.style.backgroundColor =
+                                "transparent";
+                              e.currentTarget.style.opacity = "0.85";
+                            }
+                          }}
                         >
-                          <Link
-                            to={item.path}
-                            className={cn(
-                              "flex items-center gap-3 px-3 py-2.5 rounded-md transition-all duration-200 text-sm font-medium relative group",
-                              isActive
-                                ? "text-white"
-                                : "text-white hover:text-white"
-                            )}
-                            style={{
-                              backgroundColor: isActive
-                                ? "rgba(255, 255, 255, 0.2)"
-                                : "transparent",
-                              opacity: isActive ? 1 : 0.85,
-                              marginLeft: isSidebarOpen ? "0.5rem" : "0",
-                            }}
-                            onMouseEnter={(e) => {
-                              if (!isActive) {
-                                e.currentTarget.style.backgroundColor =
-                                  "rgba(255, 255, 255, 0.1)";
-                                e.currentTarget.style.opacity = "1";
-                              }
-                            }}
-                            onMouseLeave={(e) => {
-                              if (!isActive) {
-                                e.currentTarget.style.backgroundColor =
-                                  "transparent";
-                                e.currentTarget.style.opacity = "0.85";
-                              }
-                            }}
-                          >
-                            <Icon className="w-5 h-5 flex-shrink-0" />
-                            {isSidebarOpen && (
-                              <>
-                                <span className="flex-1">{item.label}</span>
-                                <HiChevronRight className="w-4 h-4 opacity-70" />
-                              </>
-                            )}
-                          </Link>
-                        </PermissionGuard>
+                          <Icon className="w-5 h-5 flex-shrink-0" />
+                          {isSidebarOpen && (
+                            <span className="flex-1">{item.label}</span>
+                          )}
+                        </Link>
                       );
                     })}
                   </div>
@@ -431,7 +425,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
               className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
             >
-              <HiBars3 className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+              <HiOutlineMenu className="w-5 h-5 text-gray-700 dark:text-gray-300" />
             </button>
             <div className="relative flex-1 max-w-md">
               <input
@@ -448,9 +442,9 @@ export function AdminLayout({ children }: AdminLayoutProps) {
               aria-label="Toggle theme"
             >
               {theme === "dark" ? (
-                <HiSun className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+                <HiOutlineSun className="w-5 h-5 text-gray-600 dark:text-gray-300" />
               ) : (
-                <HiMoon className="w-5 h-5 text-gray-600" />
+                <HiOutlineMoon className="w-5 h-5 text-gray-600" />
               )}
             </button>
             <div className="flex items-center gap-3 pl-3 ml-3 border-l border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 rounded-lg px-3 py-2">
