@@ -9,6 +9,7 @@ import { authRoutes } from './app/routes/auth.routes'
 import { AuthGuard } from './app/guards/AuthGuard'
 import { UserTypeGuard } from './app/guards/UserTypeGuard'
 import { AccountStatusGuard } from './app/guards/AccountStatusGuard'
+import { NProgressBar } from './components/NProgress'
 import AccessDenied from './pages/AccessDenied'
 
 function LoadingFallback() {
@@ -24,6 +25,7 @@ function App() {
     <AuthProvider>
       <TenantProvider>
         <CityProvider>
+          <NProgressBar />
           <Suspense fallback={<LoadingFallback />}>
             <Routes>
               <Route path="/" element={<Navigate to="/auth/login" replace />} />

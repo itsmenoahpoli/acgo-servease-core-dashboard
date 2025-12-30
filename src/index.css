@@ -1,15 +1,336 @@
+@import "react-toastify/dist/ReactToastify.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+.rdt_TableHeadRow .rdt_TableCol {
+  position: relative;
+}
+
+.rdt_TableHeadRow .rdt_TableCol .rdt_TableCol_Sortable {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rdt_TableHeadRow .rdt_TableCol .rdt_TableCol_Sortable svg {
+  opacity: 1;
+  visibility: visible;
+  color: #6b7280;
+}
+
+.rdt_TableHeadRow .rdt_TableCol:hover .rdt_TableCol_Sortable svg {
+  color: #374151;
+}
+
+.rdt_TableHeadRow .rdt_TableCol[aria-sort="ascending"] .rdt_TableCol_Sortable svg,
+.rdt_TableHeadRow .rdt_TableCol[aria-sort="descending"] .rdt_TableCol_Sortable svg {
+  color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.1);
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    transform: scale(0.95);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes zoom-out {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.95);
+  }
+}
+
+@keyframes slide-in-from-top {
+  from {
+    transform: translateY(-10px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-from-bottom {
+  from {
+    transform: translateY(10px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-from-left {
+  from {
+    transform: translateX(-10px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-from-right {
+  from {
+    transform: translateX(10px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-in {
+  animation: fade-in 0.15s ease-out;
+}
+
+.animate-out {
+  animation: fade-out 0.15s ease-in;
+}
+
+.fade-in-0 {
+  animation: fade-in 0.15s ease-out;
+}
+
+.fade-out-0 {
+  animation: fade-out 0.15s ease-in;
+}
+
+.zoom-in-95 {
+  animation: zoom-in 0.15s ease-out;
+}
+
+.zoom-out-95 {
+  animation: zoom-out 0.15s ease-in;
+}
+
+.slide-in-from-top-2 {
+  animation: slide-in-from-top 0.15s ease-out;
+}
+
+.slide-in-from-bottom-2 {
+  animation: slide-in-from-bottom 0.15s ease-out;
+}
+
+.slide-in-from-left-2 {
+  animation: slide-in-from-left 0.15s ease-out;
+}
+
+.slide-in-from-right-2 {
+  animation: slide-in-from-right 0.15s ease-out;
+}
+
+.slide-in-from-left-1\/2 {
+  animation: slide-in-from-left 0.15s ease-out;
+}
+
+.slide-in-from-top-\[48\%\] {
+  animation: slide-in-from-top 0.15s ease-out;
+}
+
+.slide-out-to-left-1\/2 {
+  animation: slide-in-from-right 0.15s ease-in reverse;
+}
+
+.slide-out-to-top-\[48\%\] {
+  animation: slide-in-from-bottom 0.15s ease-in reverse;
+}
+
+@layer base {
+  * {
+    @apply border-gray-200;
+  }
+
+  body {
+    @apply bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased text-sm;
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Ubuntu", system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1 {
+    @apply font-semibold text-gray-900 dark:text-gray-100 text-2xl;
+  }
+
+  h2 {
+    @apply font-semibold text-gray-900 dark:text-gray-100 text-xl;
+  }
+
+  h3 {
+    @apply font-semibold text-gray-900 dark:text-gray-100 text-lg;
+  }
+
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold text-gray-900 dark:text-gray-100 text-base;
+  }
+
+  input,
+  textarea,
+  select {
+    @apply transition-all duration-200 text-sm;
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus {
+    @apply outline-none ring-2 ring-primary-500 ring-offset-1;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-500 text-white font-medium px-4 py-2 rounded-lg hover:bg-primary-600 active:bg-primary-700 transition-all duration-200 shadow-soft hover:shadow-medium disabled:opacity-50 disabled:cursor-not-allowed text-sm;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-gray-700 font-medium px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-50 active:bg-gray-100 transition-all duration-200 shadow-soft hover:shadow-medium disabled:opacity-50 disabled:cursor-not-allowed text-sm;
+  }
+
+  .input-field {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-500 focus:ring-offset-0 transition-all duration-200 text-sm;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-soft border border-gray-100;
+  }
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --radix-colors-primary: #ff385c;
+  --radix-colors-primary-hover: #e62e4d;
+  --radix-colors-primary-active: #cc2540;
+  --radix-colors-primary-foreground: #ffffff;
+  --radix-colors-secondary: #ffffff;
+  --radix-colors-secondary-hover: #f7f7f7;
+  --radix-colors-secondary-foreground: #222222;
+  --radix-colors-danger: #ef4444;
+  --radix-colors-danger-hover: #dc2626;
+  --radix-colors-danger-foreground: #ffffff;
+  --radix-colors-background: #ffffff;
+  --radix-colors-foreground: #222222;
+  --radix-colors-muted: #f7f7f7;
+  --radix-colors-muted-foreground: #626262;
+  --radix-colors-border: #e1e1e1;
+  --radix-colors-input: #ffffff;
+  --radix-colors-ring: #ff385c;
+  --radix-colors-card: #ffffff;
+  --radix-colors-card-foreground: #222222;
+  --radix-radius: 0.75rem;
+  --radix-shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --radix-shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.12);
+
+  --toastify-color-light: #fff;
+  --toastify-color-dark: #121212;
+  --toastify-color-info: #3498db;
+  --toastify-color-success: #10b981;
+  --toastify-color-warning: #f59e0b;
+  --toastify-color-error: #ef4444;
+  --toastify-color-transparent: rgba(255, 255, 255, 0.7);
+  --toastify-icon-color-info: var(--toastify-color-info);
+  --toastify-icon-color-success: var(--toastify-color-success);
+  --toastify-icon-color-warning: var(--toastify-color-warning);
+  --toastify-icon-color-error: var(--toastify-color-error);
+  --toastify-toast-width: 320px;
+  --toastify-toast-background: #fff;
+  --toastify-toast-min-height: 64px;
+  --toastify-toast-max-height: 800px;
+  --toastify-font-family: "Ubuntu", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif;
+  --toastify-z-index: 9999;
+  --toastify-text-color-light: #757575;
+  --toastify-text-color-dark: #fff;
+  --toastify-text-color-info: #fff;
+  --toastify-text-color-success: #fff;
+  --toastify-text-color-warning: #fff;
+  --toastify-text-color-error: #fff;
+  --toastify-spinner-color: #616161;
+  --toastify-spinner-color-empty-area: #e0e0e0;
+  --toastify-color-progress-light: linear-gradient(
+    to right,
+    #4cd964,
+    #5ac8fa,
+    #007aff,
+    #34aadc,
+    #5856d6,
+    #ff2d55
+  );
+  --toastify-color-progress-dark: #bb86fc;
+  --toastify-color-progress-info: var(--toastify-color-info);
+  --toastify-color-progress-success: var(--toastify-color-success);
+  --toastify-color-progress-warning: var(--toastify-color-warning);
+  --toastify-color-progress-error: var(--toastify-color-error);
+  --toastify-color-progress-bgo: 0.2;
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
+.Toastify__toast {
+  @apply text-sm rounded-lg;
 }
 
+.Toastify__toast--error {
+  background-color: #fee2e2 !important;
+  border: 1px solid #fecaca !important;
+  color: #991b1b !important;
+}
+
+.Toastify__toast--success {
+  background-color: #d1fae5 !important;
+  border: 1px solid #a7f3d0 !important;
+  color: #065f46 !important;
+}
+
+.Toastify__toast--info {
+  background-color: #dbeafe !important;
+  border: 1px solid #bfdbfe !important;
+  color: #1e40af !important;
+}
+
+.Toastify__toast--warning {
+  background-color: #fef3c7 !important;
+  border: 1px solid #fde68a !important;
+  color: #92400e !important;
+}
+
+.Toastify__progress-bar--error {
+  background: #ef4444 !important;
+}
+
+.Toastify__progress-bar--success {
+  background: #10b981 !important;
+}
+
+.Toastify__progress-bar--info {
+  background: #3b82f6 !important;
+}
+
+.Toastify__progress-bar--warning {
+  background: #f59e0b !important;
+}
