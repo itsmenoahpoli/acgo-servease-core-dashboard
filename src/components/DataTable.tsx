@@ -58,7 +58,7 @@ const getCustomStyles = (isDark: boolean) => ({
   cells: {
     style: {
       fontSize: "13px",
-      color: isDark ? "#f3f4f6" : "#212529",
+      color: isDark ? "#9ca3af" : "#6b7280",
       paddingLeft: "10px",
       paddingRight: "10px",
       paddingTop: "6px",

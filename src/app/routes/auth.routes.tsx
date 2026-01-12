@@ -1,5 +1,5 @@
 import { lazy } from 'react'
-import { AuthLayout } from '../layouts/AuthLayout'
+import { AuthLayout } from '@/layouts/AuthLayout'
 
 const Login = lazy(() => import('@/pages/Login'))
 const ForgotPassword = lazy(() => import('@/pages/ForgotPassword'))

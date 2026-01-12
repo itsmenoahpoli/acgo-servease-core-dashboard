@@ -1,15 +1,15 @@
-import { lazy } from 'react'
-import { ProviderLayout } from '../layouts/ProviderLayout'
+import { lazy } from "react";
+import { ProviderLayout } from "@/layouts/ProviderLayout";
 
-const ProviderDashboard = lazy(() => import('@/pages/provider/Dashboard'))
-const Services = lazy(() => import('@/pages/provider/Services'))
-const Bookings = lazy(() => import('@/pages/provider/Bookings'))
-const Profile = lazy(() => import('@/pages/provider/Profile'))
-const KYCStatus = lazy(() => import('@/pages/provider/KYCStatus'))
+const ProviderDashboard = lazy(() => import("@/pages/provider/Dashboard"));
+const Services = lazy(() => import("@/pages/provider/Services"));
+const Bookings = lazy(() => import("@/pages/provider/Bookings"));
+const Profile = lazy(() => import("@/pages/provider/Profile"));
+const KYCStatus = lazy(() => import("@/pages/provider/KYCStatus"));
 
 export const providerRoutes = [
   {
-    path: '/provider/dashboard',
+    path: "/provider/dashboard",
     element: (
       <ProviderLayout>
         <ProviderDashboard />
@@ -17,7 +17,7 @@ export const providerRoutes = [
     ),
   },
   {
-    path: '/provider/services',
+    path: "/provider/services",
     element: (
       <ProviderLayout>
         <Services />
@@ -25,7 +25,7 @@ export const providerRoutes = [
     ),
   },
   {
-    path: '/provider/bookings',
+    path: "/provider/bookings",
     element: (
       <ProviderLayout>
         <Bookings />
@@ -33,7 +33,7 @@ export const providerRoutes = [
     ),
   },
   {
-    path: '/provider/profile',
+    path: "/provider/profile",
     element: (
       <ProviderLayout>
         <Profile />
@@ -41,12 +41,11 @@ export const providerRoutes = [
     ),
   },
   {
-    path: '/provider/kyc',
+    path: "/provider/kyc",
     element: (
       <ProviderLayout>
         <KYCStatus />
       </ProviderLayout>
     ),
   },
-]
-
+];

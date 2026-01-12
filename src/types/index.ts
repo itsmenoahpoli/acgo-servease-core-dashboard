@@ -1,6 +1,7 @@
 // Core entity types
 export interface User {
   id: string;
+  userUid: string;
   name: string;
   email: string;
   role: string;

@@ -50,7 +50,10 @@ export default function Users() {
   const columns: TableColumn<User>[] = [
     {
       name: "ID",
-      selector: (row) => row.id,
+      selector: (row) => {
+        console.log(row);
+        return row.userUid;
+      },
       sortable: true,
       width: "100px",
     },
@@ -132,9 +135,6 @@ export default function Users() {
   const customFilters = (
     <>
       <div className="flex items-center gap-2">
-        <label className="text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap">
-          Role:
-        </label>
         <select
           value={filters.role}
           onChange={(e) => setFilters({ ...filters, role: e.target.value })}
@@ -149,9 +149,6 @@ export default function Users() {
         </select>
       </div>
       <div className="flex items-center gap-2">
-        <label className="text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap">
-          Status:
-        </label>
         <select
           value={filters.status}
           onChange={(e) => setFilters({ ...filters, status: e.target.value })}
@@ -166,9 +163,6 @@ export default function Users() {
         </select>
       </div>
       <div className="flex items-center gap-2">
-        <label className="text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap">
-          Search:
-        </label>
         <input
           type="text"
           placeholder="Search users..."

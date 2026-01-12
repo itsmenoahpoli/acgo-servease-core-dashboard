@@ -1,5 +1,5 @@
 import { lazy } from 'react'
-import { AdminLayout } from '../layouts/AdminLayout'
+import { AdminLayout } from '@/layouts/AdminLayout'
 
 const Dashboard = lazy(() => import('@/pages/admin/Dashboard'))
 const Users = lazy(() => import('@/pages/admin/Users'))
