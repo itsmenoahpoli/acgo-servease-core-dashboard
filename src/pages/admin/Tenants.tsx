@@ -16,8 +16,6 @@ const tenantSchema = z.object({
   name: z.string().min(1, "Service Provider name is required"),
 });
 
-type TenantFormValues = z.infer<typeof tenantSchema>;
-
 export default function Tenants() {
   const [showCreateForm, setShowCreateForm] = useState(false);
   const queryClient = useQueryClient();

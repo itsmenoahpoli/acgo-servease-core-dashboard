@@ -22,7 +22,7 @@ const statusColors: Record<string, { bg: string; text: string }> = {
   low: { bg: 'bg-green-100', text: 'text-green-800' },
 }
 
-export function StatusBadge({ status, variant = 'default', className }: StatusBadgeProps) {
+export function StatusBadge({ status, className }: StatusBadgeProps) {
   const normalizedStatus = status.toLowerCase().replace(/\s+/g, '-')
   const colors = statusColors[normalizedStatus] || { bg: 'bg-gray-100', text: 'text-gray-800' }
 

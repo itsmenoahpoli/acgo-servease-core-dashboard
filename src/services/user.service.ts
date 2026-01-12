@@ -61,6 +61,7 @@ const transformApiUserToUser = (data: ApiUserResponse): User => {
 
   return {
     id: data.id,
+    userUid: data.id,
     name: getName(),
     email: data.email,
     role: getRoleName(),

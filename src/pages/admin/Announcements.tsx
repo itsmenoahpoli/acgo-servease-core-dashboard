@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { TableColumn } from "react-data-table-component";
 import { announcementService } from "@/services/announcement.service";
 import { Announcement } from "@/types";
@@ -10,13 +10,11 @@ import { Spinner } from "@/components/Spinner";
 import { HiEllipsisVertical, HiPlus } from "react-icons/hi2";
 
 export default function Announcements() {
-  const [showCreateForm, setShowCreateForm] = useState(false);
   const [filters, setFilters] = useState({
     status: "",
     type: "",
     targetAudience: "",
   });
-  const queryClient = useQueryClient();
 
   const cleanFilters = () => {
     const cleaned: Record<string, string> = {};
@@ -29,13 +27,6 @@ export default function Announcements() {
   const { data: announcements, isLoading, error } = useQuery<Announcement[]>({
     queryKey: ["announcements", filters],
     queryFn: () => announcementService.getAllAnnouncements(cleanFilters()),
-  });
-
-  const deleteMutation = useMutation({
-    mutationFn: (id: string) => announcementService.deleteAnnouncement(id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["announcements"] });
-    },
   });
 
   if (isLoading) {
@@ -140,7 +131,6 @@ export default function Announcements() {
         <h1 className="text-3xl font-bold dark:text-gray-100">Announcements</h1>
         <PermissionGuard permission="ANNOUNCEMENT_MANAGE">
           <button
-            onClick={() => setShowCreateForm(true)}
             className="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 text-sm font-medium flex items-center gap-2"
           >
             <HiPlus className="w-4 h-4" />

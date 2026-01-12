@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { TableColumn } from "react-data-table-component";
 import { blogService } from "@/services/blog.service";
 import { BlogPost } from "@/types";
@@ -10,13 +10,11 @@ import { Spinner } from "@/components/Spinner";
 import { HiEllipsisVertical, HiPlus } from "react-icons/hi2";
 
 export default function Blogs() {
-  const [showCreateForm, setShowCreateForm] = useState(false);
   const [filters, setFilters] = useState({
     status: "",
     authorId: "",
     search: "",
   });
-  const queryClient = useQueryClient();
 
   const cleanFilters = () => {
     const cleaned: Record<string, string> = {};
@@ -29,13 +27,6 @@ export default function Blogs() {
   const { data: posts, isLoading, error } = useQuery<BlogPost[]>({
     queryKey: ["blog-posts", filters],
     queryFn: () => blogService.getAllPosts(cleanFilters()),
-  });
-
-  const deleteMutation = useMutation({
-    mutationFn: (id: string) => blogService.deletePost(id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["blog-posts"] });
-    },
   });
 
   if (isLoading) {
@@ -127,7 +118,6 @@ export default function Blogs() {
         <h1 className="text-3xl font-bold dark:text-gray-100">Blog Management</h1>
         <PermissionGuard permission="BLOG_MANAGE">
           <button
-            onClick={() => setShowCreateForm(true)}
             className="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 text-sm font-medium flex items-center gap-2"
           >
             <HiPlus className="w-4 h-4" />

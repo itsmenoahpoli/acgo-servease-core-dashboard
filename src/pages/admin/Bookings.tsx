@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { TableColumn } from "react-data-table-component";
 import { bookingService } from "@/services/booking.service";
 import { Booking } from "@/types";
@@ -15,7 +15,6 @@ export default function Bookings() {
     providerId: "",
     userId: "",
   });
-  const queryClient = useQueryClient();
 
   const cleanFilters = () => {
     const cleaned: Record<string, string> = {};
@@ -28,14 +27,6 @@ export default function Bookings() {
   const { data: bookings, isLoading, error } = useQuery<Booking[]>({
     queryKey: ["bookings", filters],
     queryFn: () => bookingService.getAllBookings(cleanFilters()),
-  });
-
-  const updateStatusMutation = useMutation({
-    mutationFn: ({ id, status }: { id: string; status: string }) =>
-      bookingService.updateBookingStatus(id, status),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["bookings"] });
-    },
   });
 
   if (isLoading) {
@@ -103,7 +94,7 @@ export default function Bookings() {
     },
     {
       name: "Action",
-      cell: (row) => (
+      cell: () => (
         <PermissionGuard permission="BOOKING_MANAGE">
           <button className="p-2 hover:bg-gray-100 rounded">
             <HiEllipsisVertical className="w-5 h-5 text-gray-600" />

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { TableColumn } from "react-data-table-component";
 import { supportService } from "@/services/support.service";
 import { SupportTicket } from "@/types";
@@ -15,7 +15,6 @@ export default function CustomerSupport() {
     priority: "",
     assignedTo: "",
   });
-  const queryClient = useQueryClient();
 
   const cleanFilters = () => {
     const cleaned: Record<string, string> = {};
@@ -28,14 +27,6 @@ export default function CustomerSupport() {
   const { data: tickets, isLoading, error } = useQuery<SupportTicket[]>({
     queryKey: ["support-tickets", filters],
     queryFn: () => supportService.getAllTickets(cleanFilters()),
-  });
-
-  const updateStatusMutation = useMutation({
-    mutationFn: ({ id, status }: { id: string; status: string }) =>
-      supportService.updateTicketStatus(id, status),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["support-tickets"] });
-    },
   });
 
   if (isLoading) {

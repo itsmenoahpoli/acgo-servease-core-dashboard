@@ -6,7 +6,6 @@ import { StepIndicator } from "@/components/StepIndicator";
 import { Button } from "@/components/ui";
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi2";
 import { toast } from "react-toastify";
-import { createFormikValidator } from "@/utils/formValidation";
 import { authService } from "@/services/auth.service";
 
 // Step 1: Personal Information Schema

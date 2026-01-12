@@ -16,8 +16,6 @@ const citySchema = z.object({
   name: z.string().min(1, "City name is required"),
 });
 
-type CityFormValues = z.infer<typeof citySchema>;
-
 export default function Cities() {
   const [showCreateForm, setShowCreateForm] = useState(false);
   const queryClient = useQueryClient();

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { TableColumn } from "react-data-table-component";
 import { cmsService } from "@/services/cms.service";
 import { CMSPage } from "@/types";
@@ -10,12 +10,10 @@ import { Spinner } from "@/components/Spinner";
 import { HiEllipsisVertical, HiPlus } from "react-icons/hi2";
 
 export default function CMS() {
-  const [showCreateForm, setShowCreateForm] = useState(false);
   const [filters, setFilters] = useState({
     status: "",
     search: "",
   });
-  const queryClient = useQueryClient();
 
   const cleanFilters = () => {
     const cleaned: Record<string, string> = {};
@@ -27,13 +25,6 @@ export default function CMS() {
   const { data: pages, isLoading, error } = useQuery<CMSPage[]>({
     queryKey: ["cms-pages", filters],
     queryFn: () => cmsService.getAllPages(cleanFilters()),
-  });
-
-  const deleteMutation = useMutation({
-    mutationFn: (id: string) => cmsService.deletePage(id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["cms-pages"] });
-    },
   });
 
   if (isLoading) {
@@ -95,7 +86,7 @@ export default function CMS() {
     },
     {
       name: "Action",
-      cell: (row) => (
+      cell: () => (
         <PermissionGuard permission="CMS_MANAGE">
           <button className="p-2 hover:bg-gray-100 rounded">
             <HiEllipsisVertical className="w-5 h-5 text-gray-600" />
@@ -118,7 +109,6 @@ export default function CMS() {
         <h1 className="text-3xl font-bold dark:text-gray-100">CMS Management</h1>
         <PermissionGuard permission="CMS_MANAGE">
           <button
-            onClick={() => setShowCreateForm(true)}
             className="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 text-sm font-medium flex items-center gap-2"
           >
             <HiPlus className="w-4 h-4" />

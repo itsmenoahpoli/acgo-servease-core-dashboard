@@ -61,13 +61,6 @@ export default function ProviderDashboard() {
     )
   }
 
-  const formatNumber = (num: number) => {
-    if (num >= 1000) {
-      return (num / 1000).toFixed(2) + 'k'
-    }
-    return num.toString()
-  }
-
   return (
     <div className="p-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
